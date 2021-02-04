@@ -257,4 +257,24 @@ class SiteController extends Controller
             'model' => $model
         ]);
     }
+
+    public function actionDocumentations(){
+        $model = new \app\models\Documentations;
+
+        if(Yii::$app->request->post()){
+            $model->load(Yii::$app->request->post());
+            if($model->validate()){
+                Yii::$app->session->setFlash('success','Thank you!');
+            } else{
+                Yii::$app->session->setFlash('error','Sorry Try Again!');   
+            }
+            return $this->render('result_documentations',[
+                'model'=>$model,
+            ]);
+        }
+
+        return $this->render('documentations',[
+            'model'=>$model,
+        ]);
+    }
 }
