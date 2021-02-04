@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
+use kartik\sidenav\SideNav;
 
 AppAsset::register($this);
 ?>
@@ -26,7 +27,32 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
+<div class="warp">
+    <?php
+        // echo SideNav::widget([
+        //     'type' => SideNav::TYPE_DEFAULT,
+        //     'heading' => 'Options',
+        //     'items' => [
+        //         [
+        //             'url' => '#',
+        //             'label' => 'Home',
+        //             'icon' => 'home'
+        //         ],
+        //         [
+        //             'label' => 'Help',
+        //             'icon' => 'question-sign',
+        //             'items' => [
+        //                 ['label' => 'About', 'icon'=>'info-sign', 'url'=>'#'],
+        //                 ['label' => 'Contact', 'icon'=>'phone', 'url'=>'#'],
+        //             ],
+        //         ],
+        //     ],
+        // ]);
+    ?>
+</div>
+
 <div class="wrap">
+    
     <?php
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
