@@ -14,6 +14,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use app\models\DocumentationForm;
+use yii\web\UploadedFile;
 
 /**
  * Site controller
@@ -258,23 +260,47 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionDocumentations(){
-        $model = new \app\models\Documentations;
+    // public function actionDocumentations(){
+    //     $model = new \app\models\Documentations;
 
-        if(Yii::$app->request->post()){
-            $model->load(Yii::$app->request->post());
+    //     if(Yii::$app->request->post()){
+    //         $model->load(Yii::$app->request->post());
+    //         if($model->validate()){
+    //             Yii::$app->session->setFlash('success','Thank you!');
+    //         } else{
+    //             Yii::$app->session->setFlash('error','Sorry Try Again!');   
+    //         }
+    //         return $this->render('result_documentations',[
+    //             'model'=>$model,
+    //         ]);
+    //     }
+
+    //     return $this->render('documentations',[
+    //         'model'=>$model,
+    //     ]);
+    // }
+
+    public function actionDocumentations()
+    {
+        $model = new DocumentationForm();
+        if (Yii::$app->request->post()) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
             if($model->validate()){
-                Yii::$app->session->setFlash('success','Thank you!');
+                if ($model->upload()) {
+                    Yii::$app->session->setFlash('success','Thank you!');
+                }else{
+                    Yii::$app->session->setFlash('error','Sorry File Upload Eror Try Again!'); 
+                }
             } else{
-                Yii::$app->session->setFlash('error','Sorry Try Again!');   
+                Yii::$app->session->setFlash('error','Sorry Try Again!');
             }
             return $this->render('result_documentations',[
                 'model'=>$model,
             ]);
         }
-
         return $this->render('documentations',[
             'model'=>$model,
         ]);
     }
+
 }
