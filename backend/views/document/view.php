@@ -1,6 +1,8 @@
 <?php
 
+use yii\web\Application;
 use yii\helpers\Html;
+use yii\helpers\Url;;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
@@ -25,14 +27,15 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
+    <p class="text-center">      
+        <?=Html::img(Url::to('@web/uploads/', true).$model->file, ['height'=>'200px', 'style'=>'margin-bottom:25px;margin-top:25px;'])?>
+    </p>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
             'tittle',
             'author',
-            'file:ntext',
         ],
     ]) ?>
 
